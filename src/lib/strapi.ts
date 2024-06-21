@@ -380,6 +380,27 @@ export class Strapi {
   }
 
   /**
+   * Update a specific entry -> localizations, 
+   *
+   * @param  {string} contentType - Content type's name pluralized
+   * @param  {string|number} id - ID of entry to be updated
+   * @param  {AxiosRequestConfig["data"]} data - New entry data
+   * @param  {StrapiBaseRequestParams} params? - Fields selection & Relations population
+   * @returns Promise<StrapiResponse<T>>
+   */
+    public updateForLocalizations<T>(
+      contentType: string,
+      id: string | number,
+      data: AxiosRequestConfig["data"],
+      params?: StrapiBaseRequestParams
+    ): Promise<StrapiResponse<T>> {
+      return this.request<StrapiResponse<T>>("post", `/${contentType}/${id}/localizations`, {
+        data,
+        params,
+      });
+    }
+
+  /**
    * Delete en entry
    *
    * @param  {string} contentType - Content type's name pluralized
