@@ -49,6 +49,7 @@ export class Strapi {
   public axios: AxiosInstance;
   public options: StrapiDefaultOptions;
   public user: StrapiUser = null;
+  public tokenForNodejs: string  = '';
 
   /**
    * Strapi SDK Constructor
@@ -429,7 +430,7 @@ export class Strapi {
       return token;
     }
 
-    return null;
+    return this.tokenForNodejs;
   }
 
   /**
@@ -444,6 +445,8 @@ export class Strapi {
       useLocalStorage
         ? window.localStorage.setItem(key, token)
         : Cookies.set(key, token, cookieOptions);
+    } else {
+      this.tokenForNodejs = token;
     }
   }
 
